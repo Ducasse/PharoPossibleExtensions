@@ -42,10 +42,12 @@ RBParserLiteralCollection >> parseLiteralCollection [
 	
 	| startToken node |
 	startToken := currentToken.
-	self halt.
 	self step.
 	node := self literalCollectionNodeClass new.
 	node left: startToken start.
+	self step.
+	node collectionClass: self parseVariableNode.
+	
 	self parseStatementList: false  into: node untilAnyCloserOf: '}'.
 	(currentToken isSpecial: $})
 		ifFalse: [ ^ self parseEnglobingError: node statements with: startToken errorMessage: '''}'' expected'].

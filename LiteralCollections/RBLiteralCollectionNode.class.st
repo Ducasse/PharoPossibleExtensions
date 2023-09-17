@@ -7,3 +7,15 @@ Class {
 	#category : 'LiteralCollections',
 	#package : 'LiteralCollections'
 }
+
+{ #category : 'accessing' }
+RBLiteralCollectionNode >> collectionClass [
+
+	^ collectionClass
+]
+
+{ #category : 'accessing' }
+RBLiteralCollectionNode >> collectionClass: anObject [
+
+	collectionClass := anObject
+]

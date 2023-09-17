@@ -28,4 +28,7 @@ RBParserLiteralCollectionTest >> testParseDynamicSet [
 	| literalCollectionNode |
 	literalCollectionNode := (RBParserLiteralCollection parseExpression: '{ :Set  1 . 2 }').
 	self assert: literalCollectionNode class  equals: RBLiteralCollectionNode.
+	self assert: literalCollectionNode collectionClass name equals: 'Set'.
+	self assert: literalCollectionNode statements first value equals: 1.
+	self assert: literalCollectionNode statements second value equals: 2.
 ]
