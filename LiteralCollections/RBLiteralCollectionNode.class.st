@@ -9,6 +9,11 @@ Class {
 }
 
 { #category : 'accessing' }
+RBLiteralCollectionNode >> acceptVisitor: aProgramNodeVisitor [
+	^ aProgramNodeVisitor visitLiteralCollectionNode: self
+]
+
+{ #category : 'accessing' }
 RBLiteralCollectionNode >> collectionClass [
 
 	^ collectionClass
