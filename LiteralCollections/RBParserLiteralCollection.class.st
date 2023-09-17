@@ -27,11 +27,22 @@ RBParserLiteralCollection >> parseArray [
 ]
 
 { #category : 'private - parsing' }
+RBParserLiteralCollection >> parseArrayable [
+	"We have { and it can be { 1 . 2} or {:Set 1. 2. }"
+	
+	^ (self nextToken value = $:)
+			ifFalse: [ self parseArray ]
+			ifTrue: [ self parseLiteralCollection ]
+	
+]
+
+{ #category : 'private - parsing' }
 RBParserLiteralCollection >> parseLiteralCollection [
 	":Set 1. 2 . 3 }"
 	
 	| startToken node |
 	startToken := currentToken.
+	self halt.
 	self step.
 	node := self literalCollectionNodeClass new.
 	node left: startToken start.
@@ -57,7 +68,7 @@ RBParserLiteralCollection >> parsePrimitiveObject [
 		ifTrue:
 			[currentToken value = $[ ifTrue: [^self saveCommentsDuring:[self parseBlock]].
 			currentToken value = $( ifTrue: [^self parseParenthesizedExpression].
-			currentToken value = ${ ifTrue: [^self parseArray]].
+			currentToken value = ${ ifTrue: [^self parseArrayable]].
 
 	"Annotations are implemented as a magic receiver '@'"
 	(currentToken isBinary: #@) ifTrue: [
