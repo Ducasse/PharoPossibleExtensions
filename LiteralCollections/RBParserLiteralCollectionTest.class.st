@@ -38,6 +38,19 @@ RBParserLiteralCollectionTest >> testLiteralSet [
 ]
 
 { #category : 'tests' }
+RBParserLiteralCollectionTest >> testNestedLiteralSet [
+
+	| compiler |
+	compiler := OpalCompiler new.
+	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	self assert: (compiler evaluate: 
+		'{ :Set 1 . {  :Set 2 . 2 } . 1}' )
+		
+		equals:  (Set new add: 1 ; add: (Set new add: 2; add: 2; yourself);  add: 1 ;yourself).
+	
+]
+
+{ #category : 'tests' }
 RBParserLiteralCollectionTest >> testOrderedCollection [
 
 	| compiler |
