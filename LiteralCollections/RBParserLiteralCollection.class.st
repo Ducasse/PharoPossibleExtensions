@@ -11,22 +11,6 @@ RBParserLiteralCollection >> literalCollectionNodeClass [
 ]
 
 { #category : 'private - parsing' }
-RBParserLiteralCollection >> parseArray [
-	"Although an array node represents an array, it is not an Array-like object."
-	| startToken node |
-	startToken := currentToken.
-	self step.
-	node := self arrayNodeClass new.
-	node left: startToken start.
-	self parseStatementList: false  into: node untilAnyCloserOf: '}'.
-	(currentToken isSpecial: $})
-		ifFalse: [ ^ self parseEnglobingError: node statements with: startToken errorMessage: '''}'' expected'].
-	node right: currentToken start.
-	self step.
-	^ node
-]
-
-{ #category : 'private - parsing' }
 RBParserLiteralCollection >> parseArrayable [
 	"We have { and it can be { 1 . 2} or {:Set 1. 2. }"
 	

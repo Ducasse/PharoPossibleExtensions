@@ -6,10 +6,48 @@ Class {
 }
 
 { #category : 'tests' }
+RBParserLiteralCollectionTest >> testDictionary [
+
+	| compiler dict |
+	compiler := OpalCompiler new.
+	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	dict :=  (compiler evaluate: 
+		'{ :Dictionary #a -> 33 . #b -> 44}' ).
+	self assert: (dict at: #a)  equals: 33
+	
+]
+
+{ #category : 'tests' }
 RBParserLiteralCollectionTest >> testDynamicArrayIsWorking [
 
 	self assert: { } equals: #().
 	self assert: { 1 . 2 } equals: #(1 2).
+]
+
+{ #category : 'tests' }
+RBParserLiteralCollectionTest >> testLiteralSet [
+
+	| compiler |
+	compiler := OpalCompiler new.
+	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	self assert: (compiler evaluate: 
+		'{ :Set 1 . 2 . 1}' )
+		
+		equals: #(1 2) asSet.
+	
+]
+
+{ #category : 'tests' }
+RBParserLiteralCollectionTest >> testOrderedCollection [
+
+	| compiler |
+	compiler := OpalCompiler new.
+	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	self assert: (compiler evaluate: 
+		'{ :OrderedCollection 1 . 2 . 1 . 3}' )
+		
+		equals: #(1  2 1 3) asOrderedCollection.
+	
 ]
 
 { #category : 'tests' }
