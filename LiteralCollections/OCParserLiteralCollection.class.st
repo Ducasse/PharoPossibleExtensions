@@ -7,7 +7,7 @@ Class {
 
 { #category : 'private - parsing' }
 OCParserLiteralCollection >> literalCollectionNodeClass [
-	^ RBLiteralCollectionNode 
+	^ OCLiteralCollectionNode 
 ]
 
 { #category : 'private - parsing' }
@@ -69,7 +69,7 @@ OCParserLiteralCollection >> parsePrimitiveObject [
 			| start |
 			start := currentToken start.
 			self step. ":"
-			errorNode := RBParseErrorNode new
+			errorNode := OCParseErrorNode new
 				             errorMessage: 'Unexpected block parameter';
 				             start: start;
 				             errorPosition: start;
