@@ -1,7 +1,7 @@
-Extension { #name : 'RBProgramNodeVisitor' }
+Extension { #name : 'OCProgramNodeVisitor' }
 
 { #category : '*LiteralCollections' }
-RBProgramNodeVisitor >> visitLiteralCollectionNode: aLiteralCollectionNode [
+OCProgramNodeVisitor >> visitLiteralCollectionNode: aLiteralCollectionNode [
 	self visitNode:  aLiteralCollectionNode collectionClass.
 	aLiteralCollectionNode children do: [ :each | self visitNode: each ]
 ]

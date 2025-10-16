@@ -1,7 +1,7 @@
-Extension { #name : 'ASTTypingVisitor' }
+Extension { #name : 'OCTypingVisitor' }
 
 { #category : '*LiteralCollections' }
-ASTTypingVisitor >> visitLiteralCollectionNode: aLiteralNode [
+OCTypingVisitor >> visitLiteralCollectionNode: aLiteralNode [
 
 	super visitLiteralCollectionNode: aLiteralNode.
 	self typeNode: aLiteralNode with: aLiteralNode collectionClass

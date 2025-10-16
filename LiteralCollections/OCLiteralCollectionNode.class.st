@@ -1,6 +1,6 @@
 Class {
-	#name : 'RBLiteralCollectionNode',
-	#superclass : 'RBArrayNode',
+	#name : 'OCLiteralCollectionNode',
+	#superclass : 'OCArrayNode',
 	#instVars : [
 		'collectionClass'
 	],
@@ -9,18 +9,18 @@ Class {
 }
 
 { #category : 'accessing' }
-RBLiteralCollectionNode >> acceptVisitor: aProgramNodeVisitor [
+OCLiteralCollectionNode >> acceptVisitor: aProgramNodeVisitor [
 	^ aProgramNodeVisitor visitLiteralCollectionNode: self
 ]
 
 { #category : 'accessing' }
-RBLiteralCollectionNode >> collectionClass [
+OCLiteralCollectionNode >> collectionClass [
 
 	^ collectionClass
 ]
 
 { #category : 'accessing' }
-RBLiteralCollectionNode >> collectionClass: anObject [
+OCLiteralCollectionNode >> collectionClass: anObject [
 
 	collectionClass := anObject
 ]

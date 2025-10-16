@@ -1,16 +1,16 @@
 Class {
-	#name : 'RBParserLiteralCollectionTest',
+	#name : 'OCParserLiteralCollectionTest',
 	#superclass : 'TestCase',
 	#category : 'LiteralCollections',
 	#package : 'LiteralCollections'
 }
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testDictionary [
+OCParserLiteralCollectionTest >> testDictionary [
 
 	| compiler dict |
 	compiler := OpalCompiler new.
-	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	compiler compilationContext parserClass: OCParserLiteralCollection. 
 	dict :=  (compiler evaluate: 
 		'{ :Dictionary #a -> 33 . #b -> 44}' ).
 	self assert: (dict at: #a)  equals: 33
@@ -18,18 +18,18 @@ RBParserLiteralCollectionTest >> testDictionary [
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testDynamicArrayIsWorking [
+OCParserLiteralCollectionTest >> testDynamicArrayIsWorking [
 
 	self assert: { } equals: #().
 	self assert: { 1 . 2 } equals: #(1 2).
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testLiteralSet [
+OCParserLiteralCollectionTest >> testLiteralSet [
 
 	| compiler |
 	compiler := OpalCompiler new.
-	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	compiler compilationContext parserClass: OCParserLiteralCollection. 
 	self assert: (compiler evaluate: 
 		'{ :Set 1 . 2 . 1}' )
 		
@@ -38,11 +38,11 @@ RBParserLiteralCollectionTest >> testLiteralSet [
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testNestedLiteralSet [
+OCParserLiteralCollectionTest >> testNestedLiteralSet [
 
 	| compiler |
 	compiler := OpalCompiler new.
-	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	compiler compilationContext parserClass: OCParserLiteralCollection. 
 	self assert: (compiler evaluate: 
 		'{ :Set 1 . {  :Set 2 . 2 } . 1}' )
 		
@@ -51,11 +51,11 @@ RBParserLiteralCollectionTest >> testNestedLiteralSet [
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testOrderedCollection [
+OCParserLiteralCollectionTest >> testOrderedCollection [
 
 	| compiler |
 	compiler := OpalCompiler new.
-	compiler compilationContext parserClass: RBParserLiteralCollection. 
+	compiler compilationContext parserClass: OCParserLiteralCollection. 
 	self assert: (compiler evaluate: 
 		'{ :OrderedCollection 1 . 2 . 1 . 3}' )
 		
@@ -64,21 +64,21 @@ RBParserLiteralCollectionTest >> testOrderedCollection [
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testParseDynamicArrayAgain [
+OCParserLiteralCollectionTest >> testParseDynamicArrayAgain [
 
 	| arrayNode |
-	arrayNode := (RBParserLiteralCollection parseExpression: '{  1 . 2 }').
-	self assert: arrayNode class equals: RBArrayNode.
+	arrayNode := (OCParserLiteralCollection parseExpression: '{  1 . 2 }').
+	self assert: arrayNode class equals: OCArrayNode.
 	self assert: arrayNode statements first value equals: 1.
 	self assert: arrayNode statements second value equals: 2.
 ]
 
 { #category : 'tests' }
-RBParserLiteralCollectionTest >> testParseDynamicSet [
+OCParserLiteralCollectionTest >> testParseDynamicSet [
 
 	| literalCollectionNode |
-	literalCollectionNode := (RBParserLiteralCollection parseExpression: '{ :Set  1 . 2 }').
-	self assert: literalCollectionNode class  equals: RBLiteralCollectionNode.
+	literalCollectionNode := (OCParserLiteralCollection parseExpression: '{ :Set  1 . 2 }').
+	self assert: literalCollectionNode class  equals: OCLiteralCollectionNode.
 	self assert: literalCollectionNode collectionClass name equals: 'Set'.
 	self assert: literalCollectionNode statements first value equals: 1.
 	self assert: literalCollectionNode statements second value equals: 2.

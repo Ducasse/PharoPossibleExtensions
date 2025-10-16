@@ -1,17 +1,17 @@
 Class {
-	#name : 'RBParserLiteralCollection',
-	#superclass : 'RBParser',
+	#name : 'OCParserLiteralCollection',
+	#superclass : 'OCParser',
 	#category : 'LiteralCollections',
 	#package : 'LiteralCollections'
 }
 
 { #category : 'private - parsing' }
-RBParserLiteralCollection >> literalCollectionNodeClass [
+OCParserLiteralCollection >> literalCollectionNodeClass [
 	^ RBLiteralCollectionNode 
 ]
 
 { #category : 'private - parsing' }
-RBParserLiteralCollection >> parseArrayable [
+OCParserLiteralCollection >> parseArrayable [
 	"We have { and it can be { 1 . 2} or {:Set 1. 2. }"
 	
 	^ (self nextToken value = $:)
@@ -21,7 +21,7 @@ RBParserLiteralCollection >> parseArrayable [
 ]
 
 { #category : 'private - parsing' }
-RBParserLiteralCollection >> parseLiteralCollection [
+OCParserLiteralCollection >> parseLiteralCollection [
 	":Set 1. 2 . 3 }"
 	
 	| startToken node |
@@ -41,7 +41,7 @@ RBParserLiteralCollection >> parseLiteralCollection [
 ]
 
 { #category : 'private - parsing' }
-RBParserLiteralCollection >> parsePrimitiveObject [
+OCParserLiteralCollection >> parsePrimitiveObject [
 	| errorNode |
 	currentToken isIdentifier ifTrue: [^self parsePrimitiveIdentifier].
 	currentToken isLiteralToken ifTrue: [^self parsePrimitiveLiteral].
